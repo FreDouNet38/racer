@@ -1,2 +1,3 @@
 # racer
-jeu de course
+i'm trying to create a racing "game"
+
