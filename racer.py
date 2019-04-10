@@ -5,7 +5,7 @@ from random import uniform
 TERRAINS = ["asphalt", "sand", "mud", "rocky"]
 COMPLEXITIES = ["normal", "rapid", "subtle"]
 
-
+list_parts = []
 
 class TrackPart:
     """This class is going to generate a part of the final racetrack"""
@@ -15,25 +15,30 @@ class TrackPart:
         self.length = randint(1,10)
         self.terrain = randchoice(TERRAINS)
         self.complexity = randchoice(COMPLEXITIES)
-
-    def __str__(self):
-        return "{} {} {}".format(self.terrain, self.complexity, self.length)
-
         
    
 
-class Track(TrackPart):
-    """This class is creating the racetrack by adding 20 parts from TrackPart"""
+class Track:
+    """This class is adding parts to generate a complete track.
+        there are 20 parts originally"""
 
-    def __init__(self):
+
+    def __init__(self, parts = 20):
         TrackPart.__init__(self)
+        self.parts = parts    
 
-parts = []
+    def show_part(self):
+        return(self.complexity +" "+ self.terrain + " "  + "(" + str(self.length) + ")")
 
-for p in range(0,20):
-    parts.append(str(Track()))
-   
-print ("using track"," + ".join(parts))
-    
+    def add_parts(self):
+        for i in range(0, self.parts):
+            list_parts.append(Track())
+           
+        for elt in list_parts:
+            print(elt.show_part(), end = ' + ')
+     
+t = Track()
+print(t.add_parts())
 
-       
+
+
