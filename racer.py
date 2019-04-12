@@ -5,8 +5,8 @@ from random import uniform
 TERRAINS = ["asphalt", "sand", "mud", "rocky"]
 COMPLEXITIES = ["normal", "rapid", "subtle"]
 
-list_parts = []
 list_car_pilots = []
+
 
 print("              Welcome, let's plays racer!!\n\n")
 
@@ -28,18 +28,18 @@ class Track(TrackPart):
 
 
     def __init__(self):
-        TrackPart.__init__(self)
-            
+        self.parts = []            
 
-    def show_part(self):
-        return(self.complexity +" "+ self.terrain + " "  + "(" + str(self.length) + ")")
 
     def add_parts(self):
         for i in range(20):
-            list_parts.append(Track())
+            self.parts.append(Track())
            
-        for elt in list_parts:
-            print(elt.show_part(), end = ' + ')
+        for elt in self.parts:
+            print(elt.show_part(), end = ' + ' )
+
+    def show_part(self):
+        return(TrackPart().complexity +" "+ TrackPart().terrain + " "  + "(" + str(TrackPart().length) + ")")
             
      
 t = Track()
@@ -74,13 +74,14 @@ class Car(Pilot):
             
         for pc in list_car_pilots:
             print("Car ",pc.carname, "with pilot", pc.name, end = " ; ")
+       
+            
 
 print("\n\nThe contestants are:\n")
 p = Car()
 p.pilot_car()
-            
 
-
+        
         
 
     
