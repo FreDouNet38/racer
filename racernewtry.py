@@ -20,10 +20,11 @@ class Track:
         self.track = []
         while len(self.track)< 20:
             self.track.append(TrackPart())
-        
+
+    def show_track(self):
         for elt in self.track:
             print(elt.terrain, elt.complexity,"(",elt.length,")",  end = " , ")
-
+        
 class Pilot:
     """a class to generate a pilot"""
 
@@ -44,11 +45,13 @@ class Car:
         self.mud_speed = uniform(0.5 , 1.5)
         self.rocky_speed = uniform(0.5 , 1.5)
         self.carlist = []
-        while len(self.carlist)< 5:
+        """while len(self.carlist)< 5:
             self.carlist.append(Car)
         for elt in self.carlist:
-            print("Car", elt.name, "with Pilot", elt.pilot.name)
-
+            print("Car", elt.name, "with Pilot", elt.pilot.name)"""
 b = Track()
-print()
-c = Car()
+b.show_track()
+"""for elt in b.track:
+    print(elt.terrain, elt.complexity,"(",elt.length,")",  end = " , ")"""
+    
+
