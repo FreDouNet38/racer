@@ -18,14 +18,13 @@ class Track:
     """a class to generate the entire racetrack"""
 
     def __init__(self):
-        self.track = []
-        while len(self.track)< 20:
-            self.track.append(TrackPart())
+        self.trackpart = []
+        while len(self.trackpart)< 20:
+            self.trackpart.append(TrackPart())
 
     def show_track(self):
-        for elt in self.track:
+        for elt in self.trackpart:
             print(elt.terrain, elt.complexity,"(",elt.length,")",  end = " , ")
-        
 class Pilot:
     """a class to generate a pilot"""
 
@@ -49,6 +48,39 @@ class Car:
 
     def show_car(self):
         print("Car", self.name, "with Pilot", self.pilot.name)
+
+    def time_for_part(self, i):
+        timecar = 0
+        if t.trackpart[i].terrain == "asphalt":
+            timecar = self.asphalt_speed
+        elif t.trackpart[i].terrain == "sand":
+            timecar = self.sand_speed
+        elif t.trackpart[i].terrain == "mud":
+            timecar = self.mud_speed
+        else:
+            timecar = self.rocky_speed
+
+        timepilot = 0
+        if t.trackpart[i].complexity == "normal":
+            timepilot = self.pilot.normal_speed
+        elif t.trackpart[i].complexity == "rapid":
+            timepilot = self.pilot.rapid_speed
+        else:
+            timepilot = self.pilot.subtle_speed
+
+        timecarpilot = (timecar + timepilot)* t.trackpart[i].length
+            
+        return(timecarpilot)
+
+    def time_for_track(self, Track()):
+        time = 0
+        i = 0
+        while i < 20:
+            self.time_for_part(i)
+            time = time + self.time_for_part(i)
+            i += 1
+        print(time)
+
         
 t = Track()
 t.show_track()
@@ -60,3 +92,5 @@ e = Car()
 
 for elt in carlist:
     elt.show_car()
+    elt.time_for_track(t)
+    
