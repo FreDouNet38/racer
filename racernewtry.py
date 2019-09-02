@@ -4,6 +4,7 @@ from random import uniform
 
 TERRAINS = ["asphalt", "sand", "mud", "rocky"]
 COMPLEXITIES = ["normal", "rapid", "subtle"]
+carlist = []
 
 class TrackPart:
     """a class to generate a part of a racetrack"""
@@ -44,14 +45,18 @@ class Car:
         self.sand_speed = uniform(0.5 , 1.5)
         self.mud_speed = uniform(0.5 , 1.5)
         self.rocky_speed = uniform(0.5 , 1.5)
-        self.carlist = []
-        """while len(self.carlist)< 5:
-            self.carlist.append(Car)
-        for elt in self.carlist:
-            print("Car", elt.name, "with Pilot", elt.pilot.name)"""
-b = Track()
-b.show_track()
-"""for elt in b.track:
-    print(elt.terrain, elt.complexity,"(",elt.length,")",  end = " , ")"""
-    
+        carlist.append(self)
 
+    def show_car(self):
+        print("Car", self.name, "with Pilot", self.pilot.name)
+        
+t = Track()
+t.show_track()
+a = Car()
+b = Car()
+c = Car()
+d = Car()
+e = Car()
+
+for elt in carlist:
+    elt.show_car()
