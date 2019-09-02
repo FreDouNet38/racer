@@ -13,6 +13,7 @@ class TrackPart:
         self.length = randint(1,10)
         self.terrain = randchoice(TERRAINS)
         self.complexity = randchoice(COMPLEXITIES)
+        
 
 class Track:
     """a class to generate the entire racetrack"""
@@ -21,10 +22,12 @@ class Track:
         self.trackpart = []
         while len(self.trackpart)< 20:
             self.trackpart.append(TrackPart())
-
+        
     def show_track(self):
+        print("Using track:")
         for elt in self.trackpart:
-            print(elt.terrain, elt.complexity,"(",elt.length,")",  end = " , ")
+            print(elt.terrain,elt.complexity, "(",elt.length,")", end = ",")
+         
 class Pilot:
     """a class to generate a pilot"""
 
@@ -47,7 +50,7 @@ class Car:
         carlist.append(self)
 
     def show_car(self):
-        print("Car", self.name, "with Pilot", self.pilot.name)
+        print("Car", self.name, "with Pilot", self.pilot.name, end = " ; ")
 
     def time_for_part(self, i):
         timecar = 0
@@ -72,16 +75,15 @@ class Car:
             
         return(timecarpilot)
 
-    def time_for_track(self, Track()):
+    def time_for_track(self, track):
         time = 0
         i = 0
         while i < 20:
             self.time_for_part(i)
-            time = time + self.time_for_part(i)
+            time += self.time_for_part(i)
             i += 1
         print(time)
 
-        
 t = Track()
 t.show_track()
 a = Car()
@@ -89,7 +91,11 @@ b = Car()
 c = Car()
 d = Car()
 e = Car()
+print("\nWith cars:")
+for elt in carlist:
+    elt.show_car()
 
+print("\nThe times are:")
 for elt in carlist:
     elt.show_car()
     elt.time_for_track(t)
