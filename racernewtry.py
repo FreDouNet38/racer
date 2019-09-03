@@ -27,7 +27,8 @@ class Track:
         print("Using track:")
         for elt in self.trackpart:
             print(elt.terrain,elt.complexity, "(",elt.length,")", end = ",")
-         
+
+    
 class Pilot:
     """a class to generate a pilot"""
 
@@ -52,6 +53,7 @@ class Car:
     def show_car(self):
         print("Car", self.name, "with Pilot", self.pilot.name, end = " ; ")
 
+
     def time_for_part(self, i):
         timecar = 0
         if t.trackpart[i].terrain == "asphalt":
@@ -75,14 +77,15 @@ class Car:
             
         return(timecarpilot)
 
-    def time_for_track(self, track):
+    def time_for_track(self):
         time = 0
         i = 0
         while i < 20:
             self.time_for_part(i)
-            time += self.time_for_part(i)
+            time += self.time_for_part(i) 
             i += 1
         print(time)
+            
 
 t = Track()
 t.show_track()
@@ -98,5 +101,4 @@ for elt in carlist:
 print("\nThe times are:")
 for elt in carlist:
     elt.show_car()
-    elt.time_for_track(t)
-    
+    elt.time_for_track()
