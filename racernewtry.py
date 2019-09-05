@@ -54,36 +54,33 @@ class Car:
         print("Car", self.name, "with Pilot", self.pilot.name, end = " ; ")
 
 
-    def time_for_part(self, i):
+    def time_for_part(self, trackpart):
         timecar = 0
-        if t.trackpart[i].terrain == "asphalt":
+        if trackpart.terrain == "asphalt":
             timecar = self.asphalt_speed
-        elif t.trackpart[i].terrain == "sand":
+        elif trackpart.terrain == "sand":
             timecar = self.sand_speed
-        elif t.trackpart[i].terrain == "mud":
+        elif trackpart.terrain == "mud":
             timecar = self.mud_speed
         else:
             timecar = self.rocky_speed
 
         timepilot = 0
-        if t.trackpart[i].complexity == "normal":
+        if trackpart.complexity == "normal":
             timepilot = self.pilot.normal_speed
-        elif t.trackpart[i].complexity == "rapid":
+        elif trackpart.complexity == "rapid":
             timepilot = self.pilot.rapid_speed
         else:
             timepilot = self.pilot.subtle_speed
 
-        timecarpilot = (timecar + timepilot)* t.trackpart[i].length
+        timecarpilot = (timecar + timepilot)* trackpart.length
             
-        return(timecarpilot)
+        return timecarpilot
 
-    def time_for_track(self):
+    def time_for_track(self, track):
         time = 0
-        i = 0
-        while i < 20:
-            self.time_for_part(i)
-            time += self.time_for_part(i) 
-            i += 1
+        for trackpart in track.trackpart:
+            time += self.time_for_part(trackpart) 
         print(time)
             
 
@@ -101,4 +98,5 @@ for elt in carlist:
 print("\nThe times are:")
 for elt in carlist:
     elt.show_car()
-    elt.time_for_track()
+    elt.time_for_track(t)
+
