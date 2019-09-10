@@ -5,6 +5,7 @@ from random import uniform
 TERRAINS = ["asphalt", "sand", "mud", "rocky"]
 COMPLEXITIES = ["normal", "rapid", "subtle"]
 carlist = []
+times = []
 
 class TrackPart:
     """a class to generate a part of a racetrack"""
@@ -23,10 +24,9 @@ class Track:
         while len(self.trackpart)< 20:
             self.trackpart.append(TrackPart())
         
-    def show_track(self):
-        print("Using track:")
+    def __str__(self):
         for elt in self.trackpart:
-            print(elt.terrain,elt.complexity, "(",elt.length,")", end = ",")
+            return"{} {} ({})".format(elt.terrain,elt.complexity, elt.length)
 
     
 class Pilot:
@@ -51,7 +51,7 @@ class Car:
         carlist.append(self)
 
     def show_car(self):
-        print("Car", self.name, "with Pilot", self.pilot.name, end = " ; ")
+        return("Car {} with pilot {}" .format(self.name, self.pilot.name))
 
 
     def time_for_part(self, trackpart):
@@ -81,22 +81,20 @@ class Car:
         time = 0
         for trackpart in track.trackpart:
             time += self.time_for_part(trackpart) 
-        print(time)
-            
+        return time
+        
 
 t = Track()
-t.show_track()
+print(t)
 a = Car()
 b = Car()
 c = Car()
 d = Car()
 e = Car()
-print("\nWith cars:")
 for elt in carlist:
-    elt.show_car()
+    print(elt.show_car()) 
 
-print("\nThe times are:")
-for elt in carlist:
-    elt.show_car()
-    elt.time_for_track(t)
+times = [[elt.show_car(), elt.time_for_track(t)] for elt in carlist]
+print("The times are :", times)
+min (elt.time_for_part(t))
 
